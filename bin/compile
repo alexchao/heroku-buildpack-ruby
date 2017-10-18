@@ -9,3 +9,9 @@ source "$BIN_DIR/support/bash_functions.sh"
 heroku_buildpack_ruby_install_ruby "$BIN_DIR" "$BUILDPACK_DIR"
 
 $heroku_buildpack_ruby_dir/bin/ruby $BIN_DIR/support/ruby_compile $@
+
+pushd $1
+gem install bundler
+mkdir static/css
+vendor/bundle/bin/sass scss/style.scss static/css/index.css
+popd
